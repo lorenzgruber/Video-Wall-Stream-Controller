@@ -1,0 +1,31 @@
+<html>
+    <head></head>
+    <body>
+
+        <button id="0">Stream 1</button>
+        <button id="1">Stream 2</button>
+        <button id="2">Stream 3</button>
+
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            const socket = io();
+            const buttons = document.querySelectorAll('button');
+            
+            socket.on('join', (data) => toggleButtons(!data));
+            
+            buttons.forEach(button => {
+                button.addEventListener('click', (ev) => {
+                    toggleButtons(true);
+                    socket.emit('change-stream-buttons', ev.target.id);
+                });
+            });
+            
+            socket.on('stream-closed', () => toggleButtons(true));
+            socket.on('stream-opened', () => toggleButtons(false));
+            
+            function toggleButtons(value) {
+                buttons.forEach(button => button.disabled = value);
+            }
+        </script>
+    </body>
+</html>
