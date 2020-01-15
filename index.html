@@ -2,9 +2,9 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <link href="https://vjs.zencdn.net/7.6.6/video-js.css" rel="stylesheet" />
-    <script src="https://vjs.zencdn.net/7.6.6/video.js"></script>
+    <meta charset='utf-8'>
+    <link href='https://vjs.zencdn.net/7.6.6/video-js.css" rel="stylesheet' />
+    <script src='https://vjs.zencdn.net/7.6.6/video.js'></script>
 
     <style>
         * {
@@ -47,14 +47,14 @@
     <script>
         // Consts
         const streams = [
-            "http://qthttp.apple.com.edgesuite.net/1010qwoeiuryfg/sl.m3u8",
-            "http://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/bipbop_16x9_variant.m3u8",
-            "http://demo.unified-streaming.com/video/tears-of-steel/tears-of-steel.ism/.m3u8"
+            'http://qthttp.apple.com.edgesuite.net/1010qwoeiuryfg/sl.m3u8',
+            'http://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/bipbop_16x9_variant.m3u8',
+            'http://demo.unified-streaming.com/video/tears-of-steel/tears-of-steel.ism/.m3u8'
         ];
-        const firstPlayer = videojs("first_player");
-        const secondPlayer = videojs("second_player");
+        const firstPlayer = videojs('first_player');
+        const secondPlayer = videojs('second_player');
         const changeRate = 3;
-        const socket = io.connect("http://localhost:3000");
+        const socket = io.connect('http://localhost:3000');
 
         // Dynamic variables
         let currentPlayer = firstPlayer;
@@ -68,32 +68,32 @@
 		/////////////////////////
 		
 		function main() {
-			socket.on("change-stream", data => {
+			socket.on('change-stream', data => {
 				index = data;
 				cycle();
 			});
 
 			currentPlayer.src({
 				src: streams[0],
-				type: "application/x-mpegURL"
+				type: 'application/x-mpegURL'
 			});
 		}
 		
         function cycle() {
             nextPlayer.src({
                 src: streams[index],
-                type: "application/x-mpegURL"
+                type: 'application/x-mpegURL'
             });
 
             let checkInterval = setInterval(() => {
                 if (nextPlayer.readyState() === 4) {
                     clearInterval(checkInterval);
-                    document.getElementById(currentPlayer.id()).style.display = "none";
-                    document.getElementById(nextPlayer.id()).style.display = "block";
+                    document.getElementById(currentPlayer.id()).style.display = 'none';
+                    document.getElementById(nextPlayer.id()).style.display = 'block';
                     const temp = nextPlayer;
                     nextPlayer = currentPlayer;
                     currentPlayer = temp;
-					socket.emit("stream-changed");
+					socket.emit('stream-changed');
                 }
             }, 250);
         }
