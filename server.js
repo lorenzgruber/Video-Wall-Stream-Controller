@@ -4,7 +4,7 @@ const io = require('socket.io')(http);
 let isStreamChangeable = true;
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/controll.html');
+  res.sendFile(__dirname + '/controller.html');
 });
 
 http.listen(3000, () => console.log('listening on *:3000'));
