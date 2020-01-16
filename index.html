@@ -69,7 +69,7 @@
     // Dynamic variables
     let currentPlayer = firstPlayer;
     let nextPlayer = secondPlayer;
-    let index = 1;
+    let index = 0;
 
     main();
 
@@ -83,9 +83,12 @@
         cycle();
       });
 
-      currentPlayer.src({
-        src: streams[0].stream,
-        type: 'application/x-mpegURL'
+      socket.on('join', data => {
+        index = data.streamIndex;
+          currentPlayer.src({
+          src: streams[index].stream,
+          type: 'application/x-mpegURL'
+        });
       });
     }
 
