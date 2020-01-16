@@ -1,0 +1,19 @@
+== stream-controller
+
+A website to switch between specific streams
+
+=== How to run
+
+==== 1) download dependencies
+
+....
+npm update
+....
+
+==== 2) start server
+
+....
+node server.js
+....
+
+==== 3) open `controller.html` under localhost:3000
