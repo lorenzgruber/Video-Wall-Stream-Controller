@@ -98,10 +98,9 @@
           src: streams[index].stream,
           type: 'application/x-mpegURL'
         });
+        document.getElementById('stream-name').innerHTML = streams[index].name;
+        document.getElementById('stream-desc').innerHTML = streams[index].description;
       });
-
-      document.getElementById('stream-name').innerHTML = streams[0].name;
-      document.getElementById('stream-desc').innerHTML = streams[0].description;
     }
 
     function cycle() {
