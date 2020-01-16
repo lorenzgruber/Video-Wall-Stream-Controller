@@ -23,9 +23,18 @@
 
     #stream-info {
       position: absolute;
-      left: 0;
-      bottom: 0;
+      left: 2vw;
+      bottom: 4vw;
       color: white;
+      font-family: sans-serif;
+      font-weight: bold;
+      font-size: 1.5vw;
+      background-color: rgba(20, 20, 20, 0.7);
+      padding: 1%;
+    }
+
+    #stream-name {
+      border-bottom: white solid 0.4vh;
     }
   </style>
 </head>
@@ -90,6 +99,9 @@
           type: 'application/x-mpegURL'
         });
       });
+
+      document.getElementById('stream-name').innerHTML = streams[0].name;
+      document.getElementById('stream-desc').innerHTML = streams[0].description;
     }
 
     function cycle() {
@@ -103,6 +115,8 @@
           clearInterval(checkInterval);
           document.getElementById(currentPlayer.id()).style.display = 'none';
           document.getElementById(nextPlayer.id()).style.display = 'block';
+          document.getElementById('stream-name').innerHTML = streams[index].name;
+          document.getElementById('stream-desc').innerHTML = streams[index].description;
           const temp = nextPlayer;
           nextPlayer = currentPlayer;
           currentPlayer = temp;
